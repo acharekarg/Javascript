@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-reboot.css">
+    <link rel="stylesheet" href="JsAssign.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <title>Hello, world!</title>
+  </head>
+  <body>
+   <div class="container ">
+    <form class="paymentMethod" autocomplete="off" name="paymentMethod"  id="paymentMethod">
+        <div class="layout-width mx-auto ">
+            <div class="px-2 py-0">
+              
+                    <div class="row bg-success mailForm mx-0 py-2 px-2 align-items-center text-white ">
+                        <label class="select">Select</label><span> &nbsp;->&nbsp; </span><span class="px-2"><input id="mail" data-target="#radioModal" data-backdrop='static' data-keyboard="false"  data-toggle="modal"  name="paymentMethods" value="mail" onclick="FormEmpty()"  type="radio" class="mail" checked>&nbsp;</span>
+                        <span class="fs-20px font-weight-bold">Pay By Mail </span>
+                        <span class="fs-14px pl-1"> (A check will be sent to your postal address)</span>
+                    </div>
+               
+                    <!-- Modal -->
+          <div class="modal fade" id="radioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                  <button type="button" class="close" onclick="" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    Do you want to switch forms ? (Fields will be cleared if you switch forms)
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" onclick="clr()" data-dismiss="modal">Yes</button>
+                  <button type="reset" id="no" onclick="closes()" class="btn btn-primary closeds">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+                    <div class="px-3 py-4">
+                        <div class="row col-12 mx-0 fs-14px">
+                            <div class="col-12 mx-0 row align-items-center Mailname">
+                                <label class="pr-1">Make Cheques payable to</label><sup class="pt-2 text-success font-weight-bold fs-14px">*</sup>
+                            </div>
+                            <div class="col-12">
+                                <input oninput="onlyAlphabet(this)" maxlength="30" class="inputField col-6 form-control mail form-rounded " autocomplete="off" onKeyup="checkform()" onblur="validations(this.parentElement)" type="text" name="MailName" data-message="" data-regex='^[a-zA-Z ]{3,}$'data-help='0' data-validation="Only alphabets allowed with minimum 3 characters" placeholder="Name of the person who should receive payment">
+                                <div class="helpText"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="row col-12 mx-0 py-4 fs-14px">
+                            <div class="col-6 px-0 pr-1 mx-0 row align-items-center">
+                                <label class="pr-1">Address 1</label><sup class="pt-2 text-success font-weight-bold fs-14px">*</sup>
+                            </div>
+                            <div class="col-6 px-0 pl-1">
+                                <label class="pr-1">Address 2</label><sup class="pt-2 text-success font-weight-bold fs-14px">*</sup>
+                            </div>
+                            <div class="col-6 px-0 pr-1 mx-0 row align-items-center">
+                                <input maxlength="50" class="col-12 inputField form-control mail mainAddressField form-rounded "  onKeyup="checkform()" onblur="validations(this.parentElement)" data-help="1" data-regex="" data-message="Street address" data-validation="" name="mainAddressField" type="text" placeholder="Address">
+                                <p class="col-12 helpText px-0">Street address, P.O.box, company name etc.</p>
+                            </div>
+                            <div class="col-6 px-0 pl-1">
+                                <input maxlength="50" class="col-12 inputField form-control mail optAddressField form-rounded "  onKeyup="checkform()" onblur="validations(this.parentElement)" data-help="2" data-regex="" data-message="Apartment, Suite" data-validation="" type="text" name="optAddressField" placeholder="Address">
+                                <p class="col-12 helpText px-0">Apartment, Suite, unit, building, floor etc.</p>
+                            </div>
+                        </div>
+                        <div class="row col-12 mb-3 mx-0 fs-14px">
+                                <div class="col-4 px-0 pr-1">
+                                    <label>City<sup class="pt-2 text-success font-weight-bold fs-14px">*</sup></label>
+                                    <select name="stateSel" onKeyup="checkform();validation(this.parentElement)" data-regex="Select" data-validation="Required" data-message=""  placeholder="Select"  class="form-control pl-1 mail inputField " id="citySel">
+                                        <option value="" selected="selected">Select</option>
+                                    </select>
+                                    <div class="helpText"></div>
+                                </div>
+                                <div class="col-2 px-1">
+                                    <label>State</label>
+                                    <select class="form-control mail inputField " onKeyup="checkform()" placeholder="Select" id="stateSel" data-message=""  onchange="stateValidate()">
+                                        <option value="state" selected="selected">Select</option>
+                                        <option>Maharashtra</option>
+                                        <option>Rajasthan</option>
+                                        <option>Gujrat</option>>
+                                        </select>
+                                    <div class="helpText"></div>
+                                </div>
+                                <div class="col-2 px-0 pl-1">
+                                    <label>Zip</label>
+                                    <input type="text" onKeyup="checkform()" oninput="onlyNumber(this)" onblur="validations(this.parentElement)" data-regex="^\d{6}$" data-validation="Six Numbers should be there" data-message="" data-help="5" class="form-control zipCode mail inputField "   maxlength="6" placeholder="ZIP">
+                                    <div class="helpText "></div>
+                                </div>
+                        </div>
+                        <div class="row col-12 pl-3 mx-0">
+                            <div class="col-12 fs-20px px-0 mx-0 row align-items-center">
+                                <label class="fs-20px">Domain Name</label><sup class="pt-2 pl-1 text-success font-weight-bold fs-14px"> *</sup>
+                            </div>
+                                <input maxlength="50" class="col-5 inputField form-control modified-right-corner mail optAddressField border"  onKeyup="checkform();DomainNameAdd(this.parentElement)" data-regex="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$" data-message="" data-validation="Invalid Domain Name" type="text" name="domainName" placeholder="Domain Name">
+                                <button type="button" onclick="DomainName(this.parentElement)" class="btn addBtn modified-left-corner fs-20px font-weight-bold px-2 btn-success">
+                                    +
+                                </button>
+                                <div class="col-12 helpText px-0"></div>
+                                <div class="col-12 domainNames px-0" id="domainNames"></div>
+                                
+                          
+                        </div>
+                        <div class="col-12 py-4 align-items-center row no-gutter ml-1">
+                            <span class="p-2 border ">
+                                <input class="terms" type="checkbox" class="inputField" disabled>
+                            </span>
+                            <sup class="pt-2 text-success font-weight-bold fs-14px pl-2"> *</sup><span class="pl-1">I agree to </span>
+                            <p class="helpText "></p>
+                        </div>
+                    </div>
+                   
+                
+            </div>
+            <div class="px-2 py-0">
+               
+                    <div class="row bg-dark ddForm mx-0 py-2 px-2 align-items-center text-white ">
+                        <label class="select">Select</label><span> &nbsp;->&nbsp; </span><span ><input id="dd" type="radio" data-backdrop='static' data-keyboard="false" data-toggle="modal" onclick="FormEmpty()"  name="paymentMethods" value="dd" class="dd">&nbsp;</span>
+                        <span class="fs-20px font-weight-bold">Pay By Direct Deposit </span>
+                        <span class="fs-14px pl-1"> (A check will be sent to your postal address)</span>
+                    </div>
+              
+               
+                <div class="px-3 py-4">
+                    <div class="row col-12 mx-0 fs-14px">
+                        <div class="col-6 px-0 mx-0 row align-items-center">
+                            <label class="">Your Business or Bank a/c Name</label><sup class="pt-2 text-success font-weight-bold fs-14px"> *</sup>
+                        </div>
+                        <div class="col-6 px-0 mx-0 pl-1 row align-items-center">
+                            <label class="">Bank Routing Number </label><sup class="pt-2 text-success font-weight-bold fs-14px">*</sup>
+                        </div>
+                        <div class="col-6 px-0 pr-1 mx-0 row align-items-center">
+                            <input maxlength="20" class="col-12 inputField form-control dd userBankNameField form-rounded " disabled onKeyup="checkform()" onblur="validations(this.parentElement)" data-message="" data-regex="^[a-zA-Z ]{3,}$" data-validation="Only alphabets allowed with minimum 3 characters" name="userBankName" type="text" placeholder="Bank a/c Name">
+                            <p class="col-12 helpText px-0"></p>
+                        </div>
+                        <div class="col-6 px-0 pl-1">
+                            <input maxlength="9" class="col-12 form-control inputField dd userBankNumberField form-rounded " disabled onKeyup="checkform()" oninput="onlyNumber(this)" onblur="validations(this.parentElement)" data-message="" data-regex="^\d{10}$" data-validation="Only numbers are allowed with 10 numbers" type="text" maxlength=10 name="userBankNumber" placeholder="Bank Routing Number">
+                            <p class="col-12 helpText px-0"></p>
+                        </div>
+                    </div>
+                    <div class="row col-12 mx-0 py-4 fs-14px">
+                        <div class="col-6 px-0 pr-1 mx-0 row align-items-center">
+                            <label class="pr-1">Name of the Bank</label><sup class="pt-2 text-success font-weight-bold fs-14px">*</sup>
+                        </div>
+                        <div class="col-6 px-0 pl-1 row align-items-center">
+                            <label class="pr-1 pl-3">Bank Account Number</label><sup class="pt-2 text-success font-weight-bold fs-14px">*</sup>
+                        </div>
+                        <div class="col-6 px-0 pr-1 mx-0 row align-items-center">
+                            <input class="col-12 dd form-control inputField bankNameField form-rounded " disabled onKeyup="checkform();validations(this.parentElement)" onblur="validations(this.parentElement)" data-message="" data-regex="^[a-zA-Z ]{3,}$" data-validation="Only alphabets allowed with minimum 3 characters"  name="bankName" type="text" placeholder="Bank Name">
+                            <p class="col-12 helpText px-0"></p>
+                        </div>
+                        <div class="col-6 px-0 pl-1">
+                            <input class="col-12 dd form-control inputField bankNumberField form-rounded " disabled onKeyup="checkform();validations(this.parentElement)" onblur="validations(this.parentElement)" data-message="" data-regex="^\d{10}$" data-validation="Only numbers are allowed with 10 numbers" type="text" name="bankNumber" maxlength="10" placeholder="Bank Account Number">
+                            <p class="col-12 helpText px-0"></p>
+                        </div>
+                    </div>
+                    <div class="row col-12 mx-0 fs-14px align-items-center">
+                            <div class="col-4 px-0 pr-1 row align-items-center mx-0">
+                                <label>City<sup class="pt-2 text-success font-weight-bold fs-14px">*</sup></label>
+                                <select name="bankStateSel" onKeyup="checkform()" data-regex="Select" data-validation="" data-message="City in which bank is located" disabled class="dd form-control pl-1 inputField " id="bankCitySel">
+                                    <option value="" selected="selected">Select</option>
+                                </select>   
+                                <span class="helpText">City in which bank is located</span>
+                            </div>
+                            <div class="col-2 pt-4 px-1">
+                                <label>State</label>
+                                <select class="form-control dd inputField " data-regex="" data-validation="" data-message="State in which bank is located" onKeyup="checkform()" disabled id="bankStateSel"  onchange="bankStateValidate()">
+                                    <option value="state" selected="selected">Select</option>
+                                    <option>Maharashtra</option>
+                                    <option>Rajasthan</option>
+                                    <option>Gujrat</option>>
+                                    </select>
+                                <span class="helpText">State in which bank is located</span>
+                            </div>
+                    </div>
+                    <div class="col-12 py-4">
+                        <span class="p-2 border "> 
+                            <input class="terms inputField " data-message="" type="checkbox" disabled="disabled">
+                        </span>
+                        <span>I agree to </span>
+                        <p class="helpText "></p>
+                    </div>
+              
+            
+        </div>
+        <div class="row">
+            <button type="button" onclick="save()" id="popUp" class="btn btn-success ml-auto col-1 mr-3 " data-target="#radioModal" data-backdrop='static' data-keyboard="false" data-toggle="modal" >
+                    Save
+            </button>
+        </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Form Data</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <span class="fieldName"> </span><span class="formData"></span>
+                    </div>
+                    <div>
+                        <span class="fieldName"> </span><span class="formData"></span>
+                    </div>
+                    <div>
+                        <span class="fieldName"> </span><span class="formData"></span>
+                    </div>
+                    <div>
+                        <span class="fieldName"> </span><span class="formData"></span>
+                    </div>
+                    <div>
+                        <span class="fieldName"> </span><span class="formData"></span>
+                    </div>
+                    <div>
+                        <span class="fieldName"> </span><span class="formData"></span>
+                    </div>
+                    <div>
+                        <ul class="list-group list-group-flush domainName">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="reset" onclick="refresh()   " class="btn btn-primary">Clear</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> 
+    <script src="JsAssignment2.js"></script>
+  </body>
+</html>

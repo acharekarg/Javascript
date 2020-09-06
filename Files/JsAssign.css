@@ -1,0 +1,49 @@
+.layout-width
+{
+    width:1000px;
+}
+.fs-20
+{
+    font-size: 20px;
+}
+.fs-14px
+{
+    font-size: 14px;
+}
+.select
+{
+    margin-bottom: 0px;
+}
+.name::placeholder
+{
+    font-size: 14px;
+    padding-top: 0px!important;
+    padding-bottom: 0px!important;
+}
+.img-size
+{
+    height:10px;
+    width:10px;
+}
+.inputField:focus
+{
+    outline-width: 0!important;
+    outline: none!important;
+    
+   
+    box-shadow:none!important;
+}
+.inputField:disabled
+{
+    opacity: 0.5!important;
+}
+.modified-right-corner
+{
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+}
+.modified-left-corner
+{
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+}
